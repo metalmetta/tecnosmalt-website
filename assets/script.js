@@ -70,7 +70,7 @@
         ? ["Name: " + name, "Company: " + company, "Email: " + email, "Phone: " + phone, "", "Message:", message]
         : ["Nome: " + name, "Azienda: " + company, "Email: " + email, "Telefono: " + phone, "", "Messaggio:", message];
 
-      var mailto = "mailto:tecnosmalt@pec.it"
+      var mailto = "mailto:info@tecnosmalt.it"
         + "?subject=" + encodeURIComponent(subject)
         + "&body=" + encodeURIComponent(bodyLines.join("\n"));
 
