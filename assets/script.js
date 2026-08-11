@@ -36,6 +36,31 @@
 
   applyLang(getPreferredLang());
 
+  var THEME_KEY = "tecnosmalt-theme";
+  var themeToggle = document.getElementById("theme-toggle");
+
+  function applyTheme(theme){
+    html.setAttribute("data-theme", theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch(e){}
+  }
+
+  function getPreferredTheme(){
+    try {
+      var stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") return stored;
+    } catch(e){}
+    return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+  }
+
+  applyTheme(getPreferredTheme());
+
+  if (themeToggle){
+    themeToggle.addEventListener("click", function(){
+      var current = html.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  }
+
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
