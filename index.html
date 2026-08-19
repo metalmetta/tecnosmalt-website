@@ -23,6 +23,7 @@
     <nav class="main-nav" id="main-nav">
       <a href="#about" data-it="Azienda" data-en="Company">Azienda</a>
       <a href="#services" data-it="Lavorazioni" data-en="Services">Lavorazioni</a>
+      <a href="#gallery" data-it="Galleria" data-en="Gallery">Galleria</a>
       <!-- Clienti nav link hidden until customer logo permissions are confirmed — see commented CLIENTS section below
       <a href="#clients" data-it="Clienti" data-en="Clients">Clienti</a>
       -->
@@ -243,6 +244,82 @@
             Ogni lavorazione è conforme agli standard qualitativi richiesti dal mercato, con controlli puntuali su ogni fase del processo.
           </p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section gallery">
+    <div class="container">
+      <p class="section-tag center" data-it="Galleria" data-en="Gallery">Galleria</p>
+      <h2 class="center" data-it="Il nostro lavoro" data-en="Our work">Il nostro lavoro</h2>
+      <p class="gallery-lead center"
+         data-it="Dal serbatoio grezzo alla smaltatura finita: uno sguardo dentro il nostro processo produttivo."
+         data-en="From raw tank to finished enamel: a look inside our production process.">
+        Dal serbatoio grezzo alla smaltatura finita: uno sguardo dentro il nostro processo produttivo.
+      </p>
+    </div>
+
+    <div class="carousel" id="gallery-carousel">
+      <div class="carousel-track" id="carousel-track" tabindex="0" aria-label="Galleria fotografica">
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2021-11-08_006.jpg" alt="Serbatoio grezzo appeso alla linea aerea" loading="lazy">
+          <figcaption data-it="Serbatoio grezzo in arrivo sulla linea" data-en="Raw tank arriving on the line">Serbatoio grezzo in arrivo sulla linea</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2026-07-08_15.jpg" alt="Serbatoi sulla linea di trasporto aerea in reparto" loading="lazy">
+          <figcaption data-it="Movimentazione sulla linea aerea" data-en="Handling on the overhead conveyor">Movimentazione sulla linea aerea</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <video src="assets/pictures/2023-05-30_applicazione.mp4" poster="assets/pictures/2023-05-30_applicazione_poster.jpg" muted loop playsinline preload="metadata" aria-label="Video dell'applicazione dello smalto su un serbatoio"></video>
+          <figcaption data-it="Applicazione dello smalto" data-en="Enamel application">Applicazione dello smalto</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2024-05-14_015.jpg" alt="Forno di cottura aperto con serbatoi incandescenti" loading="lazy">
+          <figcaption data-it="Il forno di cottura dello smalto" data-en="The enamel firing furnace">Il forno di cottura dello smalto</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2021-01-22_18.jpg" alt="Serbatoi incandescenti visti dalla finestra del forno" loading="lazy">
+          <figcaption data-it="Cottura ad alta temperatura" data-en="High-temperature firing">Cottura ad alta temperatura</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2024-08-30_070.jpg" alt="Interno del forno con serbatoi alla massima temperatura" loading="lazy">
+          <figcaption data-it="All'interno del forno" data-en="Inside the furnace">All'interno del forno</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2026-01-28_23.jpg" alt="Serbatoio in cottura nel forno" loading="lazy">
+          <figcaption data-it="Vetrificazione dello smalto" data-en="Enamel vitrification">Vetrificazione dello smalto</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2026-04-03_18.jpg" alt="Serbatoio smaltato finito con flangia blu su pallet" loading="lazy">
+          <figcaption data-it="Serbatoio smaltato pronto per la consegna" data-en="Enamelled tank ready for delivery">Serbatoio smaltato pronto per la consegna</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2021-11-08_003.jpg" alt="Dettaglio della flangia con smalto blu vetrificato" loading="lazy">
+          <figcaption data-it="Dettaglio della flangia smaltata" data-en="Detail of the enamelled flange">Dettaglio della flangia smaltata</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2021-11-08_004.jpg" alt="Interno del serbatoio con serpentina smaltata" loading="lazy">
+          <figcaption data-it="Serpentina di scambio smaltata" data-en="Enamelled heat-exchange coil">Serpentina di scambio smaltata</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2023-11-14_36.jpg" alt="Dettaglio delle spire della serpentina smaltata" loading="lazy">
+          <figcaption data-it="Copertura uniforme su ogni superficie" data-en="Uniform coverage on every surface">Copertura uniforme su ogni superficie</figcaption>
+        </figure>
+        <figure class="carousel-slide">
+          <img src="assets/pictures/2026-06-16_04.jpg" alt="Dettaglio della finitura vetrificata blu" loading="lazy">
+          <figcaption data-it="La finitura vetrificata" data-en="The vitrified finish">La finitura vetrificata</figcaption>
+        </figure>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="Foto precedente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Seleziona foto"></div>
+        <button class="carousel-btn" id="carousel-next" aria-label="Foto successiva">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
       </div>
     </div>
   </section>

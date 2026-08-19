@@ -76,6 +76,127 @@
     });
   }
 
+  var track = document.getElementById("carousel-track");
+  var prevBtn = document.getElementById("carousel-prev");
+  var nextBtn = document.getElementById("carousel-next");
+  var dotsWrap = document.getElementById("carousel-dots");
+  if (track && prevBtn && nextBtn && dotsWrap){
+    var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide"));
+    var dots = slides.map(function(_, i){
+      var dot = document.createElement("button");
+      dot.className = "carousel-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Foto " + (i + 1) + " di " + slides.length);
+      dot.addEventListener("click", function(){ goTo(i); });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function currentIndex(){
+      var maxScroll = track.scrollWidth - track.clientWidth;
+      if (track.scrollLeft <= 2) return 0;
+      if (track.scrollLeft >= maxScroll - 2) return slides.length - 1;
+      var center = track.scrollLeft + track.clientWidth / 2;
+      var best = 0, bestDist = Infinity;
+      slides.forEach(function(slide, i){
+        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        var dist = Math.abs(slideCenter - center);
+        if (dist < bestDist){ bestDist = dist; best = i; }
+      });
+      return best;
+    }
+
+    function goTo(i){
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      var slide = slides[i];
+      track.scrollTo({
+        left: slide.offsetLeft + slide.offsetWidth / 2 - track.clientWidth / 2,
+        behavior: "smooth"
+      });
+    }
+
+    function updateDots(){
+      var idx = currentIndex();
+      dots.forEach(function(dot, i){
+        dot.classList.toggle("active", i === idx);
+      });
+    }
+
+    prevBtn.addEventListener("click", function(){ goTo(currentIndex() - 1); });
+    nextBtn.addEventListener("click", function(){ goTo(currentIndex() + 1); });
+
+    track.addEventListener("keydown", function(e){
+      if (e.key === "ArrowLeft"){ e.preventDefault(); goTo(currentIndex() - 1); }
+      if (e.key === "ArrowRight"){ e.preventDefault(); goTo(currentIndex() + 1); }
+    });
+
+    var scrollTimer = null;
+    track.addEventListener("scroll", function(){
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(updateDots, 80);
+    }, { passive: true });
+
+    updateDots();
+
+    // Play the video slide only while it is in view
+    var video = track.querySelector("video");
+    if (video && "IntersectionObserver" in window){
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            var p = video.play();
+            if (p && p.catch) p.catch(function(){});
+          } else {
+            video.pause();
+          }
+        });
+      }, { root: track, threshold: 0.5 }).observe(video);
+    }
+
+    // Auto-scroll: advance every few seconds, wrap at the end.
+    // Paused on hover / touch / focus, while off-screen, and for reduced motion.
+    var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reducedMotion){
+      var AUTO_DELAY = 4500;
+      var autoTimer = null;
+      var hovering = false;
+      var inView = true;
+
+      function stopAuto(){
+        if (autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+      }
+      function startAuto(){
+        stopAuto();
+        if (hovering || !inView || document.hidden) return;
+        autoTimer = setInterval(function(){
+          var idx = currentIndex();
+          goTo(idx >= slides.length - 1 ? 0 : idx + 1);
+        }, AUTO_DELAY);
+      }
+
+      var carousel = document.getElementById("gallery-carousel");
+      ["mouseenter", "touchstart", "focusin", "pointerdown"].forEach(function(ev){
+        carousel.addEventListener(ev, function(){ hovering = true; stopAuto(); }, { passive: true });
+      });
+      ["mouseleave", "touchend", "focusout"].forEach(function(ev){
+        carousel.addEventListener(ev, function(){ hovering = false; startAuto(); }, { passive: true });
+      });
+
+      document.addEventListener("visibilitychange", function(){
+        if (document.hidden) stopAuto(); else startAuto();
+      });
+
+      if ("IntersectionObserver" in window){
+        new IntersectionObserver(function(entries){
+          inView = entries[0].isIntersecting;
+          if (inView) startAuto(); else stopAuto();
+        }, { threshold: 0.2 }).observe(carousel);
+      }
+
+      startAuto();
+    }
+  }
+
   var intakeForm = document.getElementById("intake-form");
   if (intakeForm){
     intakeForm.addEventListener("submit", function(e){
