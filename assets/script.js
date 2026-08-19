@@ -157,7 +157,7 @@
     // Paused on hover / touch / focus, while off-screen, and for reduced motion.
     var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reducedMotion){
-      var AUTO_DELAY = 4500;
+      var AUTO_DELAY = 2500;
       var autoTimer = null;
       var hovering = false;
       var inView = true;
