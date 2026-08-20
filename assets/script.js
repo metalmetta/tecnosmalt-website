@@ -199,6 +199,14 @@
 
   var intakeForm = document.getElementById("intake-form");
   if (intakeForm){
+    var formNote = document.getElementById("form-note");
+    var submitBtn = intakeForm.querySelector(".form-submit");
+
+    var setNote = function(lang, it, en){
+      if (!formNote) return;
+      formNote.textContent = lang === "en" ? en : it;
+    };
+
     intakeForm.addEventListener("submit", function(e){
       e.preventDefault();
       var lang = html.getAttribute("data-lang") || "it";
@@ -208,19 +216,28 @@
       var phone = intakeForm.querySelector("#f-phone").value.trim();
       var message = intakeForm.querySelector("#f-message").value.trim();
 
-      var subject = lang === "en"
-        ? "Quote request — " + (company || name)
-        : "Richiesta preventivo — " + (company || name);
+      if (submitBtn) submitBtn.disabled = true;
+      setNote(lang, "Invio in corso…", "Sending…");
 
-      var bodyLines = lang === "en"
-        ? ["Name: " + name, "Company: " + company, "Email: " + email, "Phone: " + phone, "", "Message:", message]
-        : ["Nome: " + name, "Azienda: " + company, "Email: " + email, "Telefono: " + phone, "", "Messaggio:", message];
-
-      var mailto = "mailto:info@tecnosmalt.it"
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(bodyLines.join("\n"));
-
-      window.location.href = mailto;
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, company: company, email: email, phone: phone, message: message, lang: lang })
+      })
+        .then(function(res){
+          if (!res.ok) throw new Error("Request failed");
+          return res.json();
+        })
+        .then(function(){
+          intakeForm.reset();
+          setNote(lang, "Richiesta inviata con successo. Ti risponderemo al più presto.", "Request sent successfully. We'll get back to you shortly.");
+        })
+        .catch(function(){
+          setNote(lang, "Invio non riuscito. Riprova o scrivici a info@tecnosmalt.it.", "Sending failed. Please try again or email us at info@tecnosmalt.it.");
+        })
+        .finally(function(){
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 })();
