@@ -385,7 +385,7 @@
       </div>
 
       <div class="contact-form-wrap">
-        <form class="contact-form" id="intake-form" novalidate>
+        <form class="contact-form" id="intake-form">
           <p class="form-tag" data-it="Richiedi un preventivo" data-en="Request a quote">Richiedi un preventivo</p>
 
           <div class="form-row">
@@ -395,7 +395,7 @@
 
           <div class="form-row">
             <label for="f-company" data-it="Azienda" data-en="Company">Azienda</label>
-            <input type="text" id="f-company" name="company" autocomplete="organization">
+            <input type="text" id="f-company" name="company" required autocomplete="organization">
           </div>
 
           <div class="form-row form-row-split">
@@ -405,7 +405,7 @@
             </div>
             <div>
               <label for="f-phone" data-it="Telefono" data-en="Phone">Telefono</label>
-              <input type="tel" id="f-phone" name="phone" autocomplete="tel">
+              <input type="tel" id="f-phone" name="phone" required autocomplete="tel">
             </div>
           </div>
 
