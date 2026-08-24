@@ -243,9 +243,9 @@
       if (submitBtn) submitBtn.disabled = true;
       setNote(lang, "Invio in corso…", "Sending…");
 
-      fetch("/api/contact", {
+      fetch("https://formspree.io/f/meajbqlb", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({ name: name, company: company, email: email, phone: phone, message: message, lang: lang })
       })
         .then(function(res){
