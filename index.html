@@ -105,56 +105,43 @@
         </a>
       </div>
 
-      <div class="about-visual" aria-hidden="true">
-        <div class="tank-graphic">
-          <svg viewBox="0 0 300 420" width="100%" height="100%">
-            <defs>
-              <linearGradient id="shellGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#3a4a4a"/>
-                <stop offset="100%" stop-color="#1b2424"/>
-              </linearGradient>
-              <linearGradient id="enamelGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ee6d69"/>
-                <stop offset="45%" stop-color="#e63934"/>
-                <stop offset="100%" stop-color="#00385d"/>
-              </linearGradient>
-              <linearGradient id="glossGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-              </linearGradient>
-              <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
-                <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.35"/>
-              </filter>
-            </defs>
-
-            <!-- outer metal shell -->
-            <rect x="55" y="26" width="150" height="330" rx="74" fill="url(#shellGrad)" filter="url(#softShadow)"/>
-            <!-- inner enamel coating -->
-            <rect x="67" y="38" width="126" height="306" rx="62" fill="url(#enamelGrad)"/>
-            <!-- gloss highlight -->
-            <rect x="67" y="38" width="40" height="306" rx="20" fill="url(#glossGrad)"/>
-
-            <!-- heat-exchange coil -->
-            <path d="M92 130 h116 M92 130 q0 34 116 34 M92 198 q0 -34 116 -34 M92 198 q0 34 116 34 M92 266 q0 -34 116 -34 M92 266 h116"
-                  fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="4" stroke-linecap="round"/>
-
-            <!-- top fitting -->
-            <rect x="118" y="6" width="24" height="22" rx="5" fill="url(#shellGrad)"/>
-
-            <!-- ACS tag -->
-            <g>
-              <line x1="205" y1="90" x2="248" y2="70" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
-              <rect x="248" y="52" width="46" height="30" rx="15" fill="var(--panel)" stroke="var(--line)"/>
-              <text x="271" y="71" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)" font-family="inherit">ACS</text>
-            </g>
-
-            <!-- PDC tag -->
-            <g>
-              <line x1="66" y1="300" x2="36" y2="330" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
-              <rect x="6" y="330" width="52" height="30" rx="15" fill="var(--panel)" stroke="var(--line)"/>
-              <text x="32" y="349" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-2)" font-family="inherit">PDC</text>
-            </g>
-          </svg>
+      <div class="about-visual">
+        <div class="carousel about-carousel" id="about-carousel">
+          <div class="carousel-track" id="about-carousel-track" tabindex="0" aria-label="Modelli di serbatoi vetroporcellanati">
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-doppio-scambiatore-1.jpg" alt="Serbatoio vetroporcellanato con doppio scambiatore a serpentina" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-doppio-scambiatore-1-dettaglio.jpg" alt="Sezione del serbatoio con doppio scambiatore a serpentina" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-doppio-scambiatore-2.jpg" alt="Serbatoio vetroporcellanato con doppio scambiatore, vista laterale" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-doppio-scambiatore-2-dettaglio.jpg" alt="Sezione laterale del serbatoio con doppio scambiatore" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-puro-accumulo.jpg" alt="Serbatoio vetroporcellanato di puro accumulo" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-puro-accumulo-dettaglio.jpg" alt="Sezione del serbatoio di puro accumulo" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-singolo-scambiatore.jpg" alt="Serbatoio vetroporcellanato con singolo scambiatore a serpentina" loading="lazy">
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/pictures/serbatoio-singolo-scambiatore-dettaglio.jpg" alt="Sezione del serbatoio con singolo scambiatore a serpentina" loading="lazy">
+            </figure>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="about-carousel-prev" aria-label="Modello precedente">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="carousel-dots" id="about-carousel-dots" role="tablist" aria-label="Seleziona modello"></div>
+            <button class="carousel-btn" id="about-carousel-next" aria-label="Modello successivo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

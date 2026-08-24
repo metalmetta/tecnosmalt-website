@@ -76,17 +76,18 @@
     });
   }
 
-  var track = document.getElementById("carousel-track");
-  var prevBtn = document.getElementById("carousel-prev");
-  var nextBtn = document.getElementById("carousel-next");
-  var dotsWrap = document.getElementById("carousel-dots");
+  function initCarousel(opts){
+  var track = document.getElementById(opts.trackId);
+  var prevBtn = document.getElementById(opts.prevId);
+  var nextBtn = document.getElementById(opts.nextId);
+  var dotsWrap = document.getElementById(opts.dotsId);
   if (track && prevBtn && nextBtn && dotsWrap){
     var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide"));
     var dots = slides.map(function(_, i){
       var dot = document.createElement("button");
       dot.className = "carousel-dot";
       dot.type = "button";
-      dot.setAttribute("aria-label", "Foto " + (i + 1) + " di " + slides.length);
+      dot.setAttribute("aria-label", opts.dotLabel + " " + (i + 1) + " " + opts.dotOf + " " + slides.length);
       dot.addEventListener("click", function(){ goTo(i); });
       dotsWrap.appendChild(dot);
       return dot;
@@ -157,7 +158,7 @@
     // Paused on hover / touch / focus, while off-screen, and for reduced motion.
     var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!reducedMotion){
-      var AUTO_DELAY = 2500;
+      var AUTO_DELAY = opts.autoDelay || 2500;
       var autoTimer = null;
       var hovering = false;
       var inView = true;
@@ -174,7 +175,7 @@
         }, AUTO_DELAY);
       }
 
-      var carousel = document.getElementById("gallery-carousel");
+      var carousel = document.getElementById(opts.carouselId);
       ["mouseenter", "touchstart", "focusin", "pointerdown"].forEach(function(ev){
         carousel.addEventListener(ev, function(){ hovering = true; stopAuto(); }, { passive: true });
       });
@@ -196,6 +197,29 @@
       startAuto();
     }
   }
+  }
+
+  initCarousel({
+    trackId: "carousel-track",
+    prevId: "carousel-prev",
+    nextId: "carousel-next",
+    dotsId: "carousel-dots",
+    carouselId: "gallery-carousel",
+    dotLabel: "Foto",
+    dotOf: "di",
+    autoDelay: 2500
+  });
+
+  initCarousel({
+    trackId: "about-carousel-track",
+    prevId: "about-carousel-prev",
+    nextId: "about-carousel-next",
+    dotsId: "about-carousel-dots",
+    carouselId: "about-carousel",
+    dotLabel: "Modello",
+    dotOf: "di",
+    autoDelay: 3200
+  });
 
   var intakeForm = document.getElementById("intake-form");
   if (intakeForm){

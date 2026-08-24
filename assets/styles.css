@@ -193,11 +193,18 @@ p{margin:0;color:var(--text-dim);line-height:1.65;}
   transition:border-color .2s, color .2s;
 }
 .linkedin-link:hover{color:var(--accent);border-color:var(--accent);}
-.tank-graphic{
-  max-width:280px;margin:0 auto;padding:30px;
-  background:radial-gradient(circle at 50% 20%, rgba(230,57,52,0.08), transparent 70%);
-  border-radius:24px;border:1px solid var(--line);
+.about-visual{max-width:340px;margin:0 auto;width:100%;}
+.about-carousel .carousel-track{
+  padding:0 0 8px;gap:16px;
 }
+.about-carousel .carousel-slide{
+  width:100%;
+  background:#fff;
+}
+.about-carousel .carousel-slide img{
+  aspect-ratio:4/5;object-fit:contain;padding:18px;
+}
+.about-carousel .carousel-controls{margin-top:20px;}
 
 /* ---------- Quote ---------- */
 .quote{padding:90px 0;}
